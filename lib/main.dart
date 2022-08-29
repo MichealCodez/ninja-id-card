@@ -7,8 +7,16 @@ void main() {
   ));
 }
 
-class NinjaID extends StatelessWidget {
+class NinjaID extends StatefulWidget {
   const NinjaID({Key? key}) : super(key: key);
+
+  @override
+  State<NinjaID> createState() => _NinjaIDState();
+}
+
+class _NinjaIDState extends State<NinjaID> {
+
+  int ninjaLevel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -61,9 +69,9 @@ class NinjaID extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20.0,),
-            const Text(
-              '9',
-              style: TextStyle(
+            Text(
+              '$ninjaLevel',
+              style: const TextStyle(
                   color: Colors.blueGrey,
                   letterSpacing: 2.0,
                   fontSize: 30.0,
@@ -91,6 +99,15 @@ class NinjaID extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            ninjaLevel += 1;
+          });
+        },
+        backgroundColor: Colors.grey[700],
+        child: const Icon(Icons.add),
       ),
     );
   }
